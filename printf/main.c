@@ -6,7 +6,7 @@
 /*   By: mde-vaul <mde-vaul@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 23:35:48 by mde-vaul          #+#    #+#             */
-/*   Updated: 2023/02/21 16:08:00 by mde-vaul         ###   ########.fr       */
+/*   Updated: 2023/03/03 17:46:52 by mde-vaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,9 +185,98 @@ int	main(void)
 	printf("I - %d\n", printf("qwerty %s\t%ld\t%x\n", "stroka1", 214714814563, -42));
 	printf("II - %d\n", ft_printf("qwerty %s\t%d\t%x\n", "stroka2", 214714814563, -42));
 	
+	printf("I - %d\n", printf("qwerty %s\t%x\t%x\t%i\t%d\t%s\t%lX\t%c\n", "stroka1", 2147483647, -42, 7657382, 2147483647, "", -2147483648, '^'));
+	printf("II - %d\n", ft_printf("qwerty %s\t%x\t%x\t%i\t%d\t%s\t%X\t%c\n", "stroka2", 2147483647, -42, 7657382, 2147483647, "", -2147483648, '^'));
 
-	printf("%d\n", ft_printf("qwerty %c\t%p\t%u\n", -1, 8555210, -42));
-	printf("%d\n", ft_printf("qwerty %x\t%X\t%%%% %i", 2019, 2019, -10));
+	printf("I - %d\n", ft_printf("qwerty %c\t%p\t%u\n", -1, 8555210, -42));
+	printf("II - %d\n", ft_printf("qwerty %x\t%X\t%%%% %i", 2019, 2019, -10));
 	ft_printf("%%%\n");
-	return (0);
+
+
+    int        a, b;
+
+    char    *str2 = "cause";
+    int        i = -30;
+    int        y = 69;
+    int        *ptr = &i;
+
+    printf("\033[0;1mMANDATORY PART\033[0m\n");
+
+    printf("\033[0;36;1mORIGINAL:\033[2m\n");
+    a = printf("I like turtles %s %d%%\nError %cdata at %p -> %x %X\nPwease wait %i%u seconds.. %s\n\n", str2, y, '\0', ptr, i, -i, -y, -y, (char *) 0);
+
+    printf("\033[0;34;1mREMAKE:\033[2m\n");
+    b = ft_printf("I like turtles %s %d%%\nError %cdata at %p -> %x %X\nPwease wait %i%u seconds.. %s\n\n", str2, y, '\0', ptr, i, -i, -y, -y, (char *) 0);
+
+    printf("\033[0;33;1mCOMPARAISONS:\033[2m\n");
+    printf("Original: [%d] VS Function: [%d] ", a, b);
+    if (a == b)
+        printf("\033[0;32m(Good)\033[0m\n\n");
+    else
+    {
+        printf("\033[0;31m(Bad: %d diff)\n\n", b - a);
+        printf("\033[0;33mChecking issues..");
+
+        printf("\n < Origin [No %%] Func > ");
+        a = printf("Hello World");
+        b = ft_printf("Hello World");
+        printf("\nOrigin: %d // Func: %d // Diff: %d\n", a, b, b - a);
+
+        printf("\n < Origin [%%%%] Func > ");
+        a = printf("%%");
+        b = ft_printf("%%");
+        printf("\nOrigin: %d // Func: %d // Diff: %d\n", a, b, b - a);
+
+        printf("\n < Origin [%%c] Func > ");
+        a = printf("%c", 'a');
+        b = ft_printf("%c", 'a');
+        printf("\nOrigin: %d // Func: %d // Diff: %d\n", a, b, b - a);
+
+        printf("\n < Origin [%%c (NUL)] Func > ");
+        a = printf("%c", 0);
+        b = ft_printf("%c", 0);
+        printf("\nOrigin: %d // Func: %d // Diff: %d\n", a, b, b - a);
+
+        printf("\n < Origin [%%d] Func > ");
+        a = printf("%d", 6886);
+        b = ft_printf("%d", 6886);
+        printf("\nOrigin: %d // Func: %d // Diff: %d\n", a, b, b - a);
+
+        printf("\n < Origin [%%u] Func > ");
+        a = printf("%u", -460);
+        b = ft_printf("%u", -460);
+        printf("\nOrigin: %d // Func: %d // Diff: %d\n", a, b, b - a);
+
+        printf("\n < Origin [%%s] Func > ");
+        a = printf("%s", "je suis le %s");
+        b = ft_printf("%s", "je suis le %s");
+        printf("\nOrigin: %d // Func: %d // Diff: %d\n", a, b, b - a);
+
+        printf("\n < Origin [%%i] Func > ");
+        a = printf("%i", 324);
+        b = ft_printf("%i", 324);
+        printf("\nOrigin: %d // Func: %d // Diff: %d\n", a, b, b - a);
+
+        printf("\n < Origin [%%x] Func > ");
+        a = printf("%x", 46798);
+        b = ft_printf("%x", 46798);
+        printf("\nOrigin: %d // Func: %d // Diff: %d\n", a, b, b - a);
+
+        printf("\n < Origin [%%X] Func > ");
+        a = printf("%X", -413);
+        b = ft_printf("%X", -413);
+        printf("\nOrigin: %d // Func: %d // Diff: %d\n", a, b, b - a);
+
+        printf("\n < Origin [%%p] Func > ");
+        a = printf("%p", ptr);
+        b = ft_printf("%p", ptr);
+        printf("\nOrigin: %d // Func: %d // Diff: %d\n", a, b, b - a);
+
+        printf("\nIf everything above seems correct...\nThen the problem is somewhere else.\n");
+    }
+
+    printf("\033[33;1mHANDLES NULL STRING?\033[0;31m\n");
+    ft_printf(0);
+    printf("\033[32mNull Format Handled!\033[0m\n");
+    return (0);
 }
