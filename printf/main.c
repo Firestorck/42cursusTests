@@ -6,7 +6,7 @@
 /*   By: mde-vaul <mde-vaul@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 23:35:48 by mde-vaul          #+#    #+#             */
-/*   Updated: 2023/03/03 17:46:52 by mde-vaul         ###   ########.fr       */
+/*   Updated: 2023/03/18 17:04:11 by mde-vaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,11 +182,11 @@ int	main(void)
 	printf("No original - %d\n", ft_printf("|%2.x|\n", un));
 	printf("Original - %d\n", printf("|%2.x|\n", un));
 
-	printf("I - %d\n", printf("qwerty %s\t%ld\t%x\n", "stroka1", 214714814563, -42));
-	printf("II - %d\n", ft_printf("qwerty %s\t%d\t%x\n", "stroka2", 214714814563, -42));
+	printf("I - %d\n", printf("qwerty %s\t%d\t%x\n", "stroka1", 2147483647, -42));
+	printf("II - %d\n", ft_printf("qwerty %s\t%d\t%x\n", "stroka2", 2147483647, -42));
 	
-	printf("I - %d\n", printf("qwerty %s\t%x\t%x\t%i\t%d\t%s\t%lX\t%c\n", "stroka1", 2147483647, -42, 7657382, 2147483647, "", -2147483648, '^'));
-	printf("II - %d\n", ft_printf("qwerty %s\t%x\t%x\t%i\t%d\t%s\t%X\t%c\n", "stroka2", 2147483647, -42, 7657382, 2147483647, "", -2147483648, '^'));
+	printf("I  - %d\n",   printf("qwerty %s\t%x\t%x\t%i\t%d\t%ld\t%s\t%lX\t%c\n", "stroka1", 2147483647, -42, 7657382, 2147483647, -2147483648, "", -2147483648, '^'));
+	printf("II - %d\n", ft_printf("qwerty %s\t%x\t%x\t%i\t%d\t%d\t%s\t%X\t%c\n", "stroka2", 2147483647, -42, 7657382, 2147483647, -2147483648, "", -2147483648, '^'));
 
 	printf("I - %d\n", ft_printf("qwerty %c\t%p\t%u\n", -1, 8555210, -42));
 	printf("II - %d\n", ft_printf("qwerty %x\t%X\t%%%% %i", 2019, 2019, -10));
