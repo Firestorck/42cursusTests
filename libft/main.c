@@ -6,7 +6,7 @@
 /*   By: mde-vaul <mde-vaul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 14:51:10 by mde-vaul          #+#    #+#             */
-/*   Updated: 2022/12/09 19:02:49 by mde-vaul         ###   ########.fr       */
+/*   Updated: 2023/06/15 18:53:41 by mde-vaul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ int	main(void)
 		{
 			printf("%d - %s\n", i, tabstr[i]);
 			i++;
+			free(tabstr[i]);
 		}
+		free(tabstr);
 	}
 }
 /* 	printf("\n^ TESTER ^\nv OWNED v\n\n");
